@@ -6,16 +6,25 @@ export interface Props {
 }
 
 function InputPromise({name, value}: Props): Promise<JSX.Element> {
-    return new Promise( (resolve, reject) => {
+    return new Promise((resolve, reject) => {
+        console.log('render Input: ', value);
+
+        let inputElem = (<input id="inputField" name={name} type="text"/>);
+
         if (isValidValue(value)) {
-            resolve(<input name={name} value={value}/>)
+            resolve(inputElem);
         } else {
-            reject(<span style={{color:'red'}}>Invalid value it should be: VALID</span>)
+            reject((
+                <span>{inputElem}
+                    <span style={{color: 'red'}}>Invalid value [{value}] The only valid value: VALID</span>
+                </span>
+            ));
         }
-    } );
+    });
 }
 
-function isValidValue(value: any) {
-    return value === 'VALID'
+function isValidValue(value: string) {
+    return value === 'VALID';
 }
+
 export default InputPromise;

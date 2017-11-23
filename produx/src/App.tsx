@@ -1,11 +1,11 @@
 import * as React from 'react';
 import './App.css';
-import Hello from './components/Hello/Hello';
 import Field from './components/field/Field';
 import InputPromise from './components/input/Input';
+import SubmitButton from './components/submit/SubmitBtn';
 
-function App(): Promise<JSX.Element> {
-    let input = InputPromise({name: 'test name', value: 'test value'});
+function App(inputValue: string): Promise<JSX.Element> {
+    let input = InputPromise({name: 'test name', value: inputValue});
 
     return new Promise((resolve, reject) => {
         Field({name: 'test name', content: input})
@@ -15,7 +15,7 @@ function App(): Promise<JSX.Element> {
 
                         {field}
 
-                        <Hello name={'Maci'} key={'key'} age={123}/>
+                        <SubmitButton />
                     </div>
                 ))
             .catch(
@@ -24,7 +24,7 @@ function App(): Promise<JSX.Element> {
 
                         {field}
 
-                        <Hello name={'Maci'} key={'key'} age={123}/>
+                        <SubmitButton />
                     </div>
                 )
             );

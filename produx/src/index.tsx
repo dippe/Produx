@@ -3,15 +3,20 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-App().then((app) => {
-    console.log('Successful app render');
-    ReactDOM.render(
-        app,
-        document.getElementById('root') as HTMLElement
+renderRoot(App('VALID'));
+
+export function renderRoot (appPromise: Promise<JSX.Element>) {
+    appPromise.then((appElement) => {
+        console.log('Successful app render');
+        ReactDOM.render(
+            appElement,
+            document.getElementById('root') as HTMLElement
+        );
+    }).catch(
+        reason => {
+            console.error('Error in app render');
+        }
     );
-}).catch(
-    reason => {
-        console.error('Error in app render');
-    }
-);
+}
+
 registerServiceWorker();
