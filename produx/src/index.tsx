@@ -3,17 +3,15 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-App().then( (app) =>
-{
-    debugger
+App().then((app) => {
+    console.log('Successful app render');
     ReactDOM.render(
         app,
         document.getElementById('root') as HTMLElement
     );
 }).catch(
     reason => {
-        debugger
-
+        console.error('Error in app render');
     }
 );
 registerServiceWorker();
